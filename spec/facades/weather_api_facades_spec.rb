@@ -7,7 +7,7 @@ RSpec.describe WeatherApiFacade do
 
       response = WeatherApiFacade.new.get_weather_now("Paris")
 
-      expect(response).to be_a Weather_detail
+      expect(response).to be_a WeatherCurrent
     end
   end
 end
