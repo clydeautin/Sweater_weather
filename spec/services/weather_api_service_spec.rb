@@ -2,13 +2,14 @@ require "rails_helper"
 
 RSpec.describe WeatherApiService do
   before(:each) do
-    @base_url = "http://api.weatherapi.com/v1"
+    base_url = "http://api.weatherapi.com"
 
-    @json_response_paris_1day = File.read('spec/fixtures/paris_weather_today.json')
+    json_response_paris_1day = File.read('spec/fixtures/paris_weather_today.json')
+    api_key = Rails.application.credentials.weather_api[:key]
+    location = "Paris"
 
-    stub_request(:get, "#{@base_url}/current/json")
-      .with(querry: { q: "Paris" })
-      .to_return(status: 200, body: @json_response_paris_1day, headers: { 'Content-Type' => 'application/json' } )
+    stub_request(:get, "#{base_url}/v1/forecast.json?key=#{api_key}&q=#{location}&aqi=no")
+      .to_return(status: 200, body: json_response_paris_1day, headers: { 'Content-Type' => 'application/json' } )
   end
   describe '.get_current_weather' do
     it 'returns a hash' do
