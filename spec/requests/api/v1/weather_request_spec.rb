@@ -17,9 +17,9 @@ RSpec.describe 'Weather API' do
 
       get "/api/v1/forecast", params: { location: "paris" }
 
-      # require 'pry'; binding.pry
+
       weather_details = JSON.parse(response.body, symbolize_names: true)
-      # require 'pry'; binding.pry
+
       expect(response).to be_successful
       expect(response.status).to eq(200)
 

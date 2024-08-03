@@ -32,4 +32,27 @@ RSpec.describe WeatherApiFacade do
       expect(response.count).to eq 24
     end
   end
+
+  describe '#get_weather_package' do
+  it 'returns a Weather object containing current, forecast, and hourly weather' do
+    facade = WeatherApiFacade.new
+    location = "Paris"
+
+    # Mock the other methods to return appropriate objects
+    today = instance_double(WeatherCurrent)
+    forecast = [instance_double(WeatherForecast), instance_double(WeatherForecast)]
+    hourly = [instance_double(WeatherHourly), instance_double(WeatherHourly)]
+
+    allow(facade).to receive(:get_weather_now).with(location).and_return(today)
+    allow(facade).to receive(:get_weather_forecast).with(location).and_return(forecast)
+    allow(facade).to receive(:get_weather_hourly).with(location).and_return(hourly)
+
+    weather_package = facade.get_weather_package(today, forecast, hourly)
+
+    expect(weather_package).to be_a Weather
+    expect(weather_package.today).to eq today
+    expect(weather_package.forecast).to eq forecast
+    expect(weather_package.hourly).to eq hourly
+  end
+end
 end
