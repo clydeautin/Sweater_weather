@@ -19,4 +19,8 @@ class WeatherApiFacade
       WeatherHourly.new(hourly_weather)
     end
   end
+
+  def get_weather_package(today, forecast, hourly)
+    Weather.new(today, forecast, hourly)
+  end
 end

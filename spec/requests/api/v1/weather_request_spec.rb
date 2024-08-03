@@ -19,7 +19,7 @@ RSpec.describe 'Weather API' do
 
       # require 'pry'; binding.pry
       weather_details = JSON.parse(response.body, symbolize_names: true)
-
+      # require 'pry'; binding.pry
       expect(response).to be_successful
       expect(response.status).to eq(200)
 
@@ -29,15 +29,35 @@ RSpec.describe 'Weather API' do
       expect(data).to have_key(:type)
       expect(data).to have_key(:attributes)
 
-      attributes = data[:attributes]
-      expect(attributes).to have_key(:last_updated)
-      expect(attributes).to have_key(:temperature)
-      expect(attributes).to have_key(:feels_like)
-      expect(attributes).to have_key(:humidity)
-      expect(attributes).to have_key(:uvi)
-      expect(attributes).to have_key(:visibility)
-      expect(attributes).to have_key(:condition_text)
-      expect(attributes).to have_key(:condition_icon)
+      today_attributes = data[:attributes][:current_weather]
+      expect(today_attributes).to have_key(:last_updated)
+      expect(today_attributes).to have_key(:temperature)
+      expect(today_attributes).to have_key(:feels_like)
+      expect(today_attributes).to have_key(:humidity)
+      expect(today_attributes).to have_key(:uvi)
+      expect(today_attributes).to have_key(:visibility)
+      expect(today_attributes).to have_key(:condition_text)
+      expect(today_attributes).to have_key(:condition_icon)
+      
+      forecast_attributes = data[:attributes][:daily_weather][0]
+      expect(forecast_attributes).to have_key(:date)
+      expect(forecast_attributes).to have_key(:sunrise)
+      expect(forecast_attributes).to have_key(:sunset)
+      expect(forecast_attributes).to have_key(:max_temp)
+      expect(forecast_attributes).to have_key(:min_temp)
+      expect(forecast_attributes).to have_key(:condition_text)
+      expect(forecast_attributes).to have_key(:condition_icon)
+
+      expect(data[:attributes][:daily_weather].count).to eq 5
+      
+      hourly_attributes = data[:attributes][:hourly_weather][0]
+      expect(hourly_attributes).to have_key(:time)
+      expect(hourly_attributes).to have_key(:temperature)
+      expect(hourly_attributes).to have_key(:condition_text)
+      expect(hourly_attributes).to have_key(:condition_icon)
+      
+      expect(data[:attributes][:hourly_weather].count).to eq 24
+      
     end
   end
 end

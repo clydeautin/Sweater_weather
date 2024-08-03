@@ -1,11 +1,11 @@
 class WeatherCurrent
-  attr_reader :temp_f,
+  attr_reader :temperature,
               :last_updated,
               :condition_text,
               :condition_icon,
               :feels_like,
               :uvi,
-              :visibility_miles,
+              :visibility,
               :humidity
 
   def initialize(json)
@@ -13,7 +13,7 @@ class WeatherCurrent
     @last_updated = json[:current][:last_updated]
     @condition_text = json[:current][:condition][:text]
     @condition_icon = json[:current][:condition][:icon]
-    @feels_like = json[:current][:feels_like_f]
+    @feels_like = json[:current][:feelslike_f]
     @uvi = json[:current][:uv]
     @visibility = json[:current][:vis_miles]
     @humidity = json[:current][:humidity]
