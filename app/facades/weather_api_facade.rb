@@ -11,4 +11,12 @@ class WeatherApiFacade
       WeatherForecast.new(daily_weather)
     end
   end
+
+  def get_weather_hourly(location)
+    json = WeatherApiService.get_forecast_5(location)
+
+    json[:forecast][:forecastday][0][:hour].map do |hourly_weather|
+      WeatherHourly.new(hourly_weather)
+    end
+  end
 end

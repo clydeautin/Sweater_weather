@@ -21,4 +21,15 @@ RSpec.describe WeatherApiFacade do
       expect(response.count).to eq 5
     end
   end
+
+  describe '#get_weather_hourly' do
+    it 'returns weather info on each hour for a specified city' do
+      location = "Paris"
+
+      response = WeatherApiFacade.new.get_weather_hourly("Paris")
+      expect(response).to be_a Array
+      expect(response[0]).to be_a WeatherHourly
+      expect(response.count).to eq 24
+    end
+  end
 end
