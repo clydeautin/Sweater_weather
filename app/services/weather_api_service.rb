@@ -12,4 +12,12 @@ class WeatherApiService
 
     JSON.parse(response.body, symbolize_names: true)
   end
+
+  def self.get_forecast_5(location)
+    api_key = Rails.application.credentials.weather_api[:key]
+
+    response = conn.get("/v1/forecast.json?key=#{api_key}&q=#{location}&days=5&aqi=no&alerts=no")
+
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end
