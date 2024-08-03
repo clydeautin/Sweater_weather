@@ -16,7 +16,7 @@ RSpec.describe WeatherApiService do
       location = "Paris"
 
       weather_deets = WeatherApiService.get_current_weather(location)
-
+      require 'pry'; binding.pry
       expect(weather_deets).to be_a(Hash)
     end
   end
