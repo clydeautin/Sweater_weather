@@ -5,6 +5,7 @@ class BookInfo
     @isbn = json[:isbn]
     @title = json[:title]
     @publisher = json[:publisher]
+
   end
 
 end
