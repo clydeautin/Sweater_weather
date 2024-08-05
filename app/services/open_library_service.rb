@@ -6,8 +6,14 @@ class OpenLibraryService
 
   def self.get_solr_search(search_terms)
     response = conn.get("/search.json?q=#{search_terms}")
-    # require 'pry'; binding.pry
+
 
     JSON.parse(response.body, symbolize_names: true)
   end
+  # def self.get_solr_search(search_terms, quantity)
+  #   response = conn.get("/search.json?q=#{search_terms}&limit=#{quantity}")
+  #   # require 'pry'; binding.pry
+
+  #   JSON.parse(response.body, symbolize_names: true)
+  # end
 end

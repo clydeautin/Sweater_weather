@@ -6,6 +6,14 @@ class OpenLibraryFacade
       BookInfo.new(book)
     end
   end
+
+  # def get_books_from_search(search_terms, quantity)
+  #   json = OpenLibraryService.get_solr_search(search_terms, quantity)
+
+  #   json[:docs].map do |book|
+  #     BookInfo.new(book)
+  #   end
+  # end
   
   def get_num_books_found(search_terms)
     json = OpenLibraryService.get_solr_search(search_terms)

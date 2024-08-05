@@ -5,6 +5,7 @@ class Api::V1::BooksController < ApplicationController
 
     weather_today = WeatherApiFacade.new.get_weather_now(location)
     city_books = OpenLibraryFacade.new.get_books_from_search(location).first(quantity)
+    # city_books = OpenLibraryFacade.new.get_books_from_search(location, quantity)
     num_books = OpenLibraryFacade.new.get_num_books_found(location)
 
     books_n_weather = OpenLibraryFacade.new.get_books_weather(weather_today, city_books, num_books)

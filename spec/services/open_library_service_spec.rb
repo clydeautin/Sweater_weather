@@ -20,5 +20,18 @@ RSpec.describe OpenLibraryService do
       expect(search_results[:numFoundExact]).to be(true)
 
     end
+    # it 'returns books related to my search terms' do
+
+    #   search_terms = 'Denver, CO'
+    # quantity = 5
+
+
+    #   search_results = OpenLibraryService.get_solr_search(search_terms, quantity)
+
+    #   expect(search_results).to be_a(Hash)
+    #   expect(search_results[:numFound]).to eq(742)
+    #   expect(search_results[:numFoundExact]).to be(true)
+
+    # end
   end
 end
