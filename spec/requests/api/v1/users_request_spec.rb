@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe 'User API' do
+RSpec.describe 'User Requests' do
   before(:each) do
     @valid_attributes = {
       email: "user@example.com",
