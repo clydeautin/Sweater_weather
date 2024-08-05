@@ -6,5 +6,4 @@ class BookInfo
     @title = json[:title]
     @publisher = json[:publisher]
   end
-
 end
