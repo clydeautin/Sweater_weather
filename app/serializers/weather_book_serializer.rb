@@ -10,7 +10,7 @@ class WeatherBookSerializer
           destination: books_n_weather.weather.location,
           forecast: {
             summary: books_n_weather.weather.condition_text,
-            temperature: books_n_weather.weather.temperature
+            temperature: "#{books_n_weather.weather.temperature} F"
           },
           total_books_found: books_n_weather.num_found.num_found,
           books: books_n_weather.city_books.map do |book|

@@ -15,6 +15,9 @@ RSpec.describe WeatherCurrent do
           uv: 5,
           vis_miles: 6,
           humidity: 65
+        },
+        location: { 
+          name: "Denver"
         }
       }
 

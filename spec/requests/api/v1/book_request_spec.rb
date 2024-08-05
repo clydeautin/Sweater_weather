@@ -6,7 +6,6 @@ RSpec.describe "Book API" do
       get "/api/v1/book-search?location=denver,co&quantity=5"
 
       city_books = JSON.parse(response.body, symbolize_names: true)
-      require 'pry'; binding.pry
       expect(response).to be_successful
       expect(response.status).to eq(200)
       expect(city_books).to have_key(:data)

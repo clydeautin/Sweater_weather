@@ -15,7 +15,7 @@ RSpec.describe 'Weather API' do
 
   describe '#weather_and_books' do
     it 'returns weather for a city and a set number of books for that city' do
-      get "api/v1/book-search", params: { location: "denver,co", quantity: "5" }
+      get "/api/v1/book-search", params: { location: "denver,co", quantity: "5" }
 
       city_books = JSON.parse(response.body, symbolize_names: true)
 
