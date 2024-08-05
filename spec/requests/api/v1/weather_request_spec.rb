@@ -1,15 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe 'Weather API' do 
-  before(:each) do
-    base_url = "http://api.weatherapi.com"
+  # before(:each) do
+  #   base_url = "http://api.weatherapi.com"
 
-    json_response_paris_1day = File.read('spec/fixtures/paris_weather_today.json')
-    api_key = Rails.application.credentials.weather_api[:key]
-    location = "Paris"
+  #   json_response_paris_1day = File.read('spec/fixtures/paris_weather_today.json')
+  #   api_key = Rails.application.credentials.weather_api[:key]
+  #   location = "Paris"
 
-    stub_request(:get, "#{base_url}/v1/forecast.json?key=#{api_key}&q=#{location}&aqi=no")
-      .to_return(status: 200, body: json_response_paris_1day, headers: { 'Content-Type' => 'application/json' } )
+  #   stub_request(:get, "#{base_url}/v1/forecast.json?key=#{api_key}&q=#{location}&aqi=no")
+  #     .to_return(status: 200, body: json_response_paris_1day, headers: { 'Content-Type' => 'application/json' } )
+  # end
+
+
+  describe '#weather_and_books' do
+    it 'returns weather for a city and a set number of books for that city' do
+      get "api/v1/book-search", params: { location: "denver,co", quantity: "5" }
+
+      city_books = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      expect(city_books).to have_key(:data)
+    end
   end
 
   describe '#forecast' do

@@ -6,7 +6,8 @@ class WeatherCurrent
               :feels_like,
               :uvi,
               :visibility,
-              :humidity
+              :humidity,
+              :location
 
   def initialize(json)
     @temperature = json[:current][:temp_f]
@@ -17,5 +18,6 @@ class WeatherCurrent
     @uvi = json[:current][:uv]
     @visibility = json[:current][:vis_miles]
     @humidity = json[:current][:humidity]
+    @location = json[:location][:name]
   end
 end
