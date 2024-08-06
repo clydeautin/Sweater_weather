@@ -6,7 +6,6 @@ class RoadTrip
     @time_in_s = json[:time]
     @time_in_days = days_traveled(@time_in_s)
     @eta = eta_calculator(@time_in_s)
-    # require 'pry'; binding.pry
     @hour_of_arrival = hour_of_arrival_formatter(@eta)
   end
 

@@ -5,7 +5,7 @@ RSpec.describe WeatherApiFacade do
     it 'returns info on current weather for a city' do
       location = "Paris"
 
-      response = WeatherApiFacade.new.get_weather_now("Paris")
+      response = WeatherApiFacade.new.get_weather_now(location)
 
       expect(response).to be_a WeatherCurrent
     end
@@ -15,7 +15,7 @@ RSpec.describe WeatherApiFacade do
     it 'returns info on current weather for a city' do
       location = "Paris"
 
-      response = WeatherApiFacade.new.get_weather_forecast("Paris")
+      response = WeatherApiFacade.new.get_weather_forecast(location)
       expect(response).to be_a Array
       expect(response[0]).to be_a WeatherForecast
       expect(response.count).to eq 5
@@ -26,7 +26,7 @@ RSpec.describe WeatherApiFacade do
     it 'returns weather info on each hour for a specified city' do
       location = "Paris"
 
-      response = WeatherApiFacade.new.get_weather_hourly("Paris")
+      response = WeatherApiFacade.new.get_weather_hourly(location)
       expect(response).to be_a Array
       expect(response[0]).to be_a WeatherHourly
       expect(response.count).to eq 24

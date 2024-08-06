@@ -15,9 +15,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
 
-    it "should be invalid" do
-      # user1 = User.new(email: "user@example.com", password: "password123")
-      # user = User.new(email: "user@example.com", password: "password123")
+    it "should be invalid if user email already exists" do
       create(:user, email: "user@example.com")
       user = build(:user, email: "user@example.com")
       expect(user).to be_invalid
