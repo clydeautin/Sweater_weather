@@ -7,7 +7,7 @@ class Api::V1::RoadTripController < ApplicationController
       trip = RoadTripFacade.new.get_trip_details(origin, destination)
 
       render json: RoadTripSerializer.format_current_trip(trip, params)
-      rescue => e
+    rescue StandardError => e
       render json: {error: e.message}, status: :unprocessable_entity
     end
   end

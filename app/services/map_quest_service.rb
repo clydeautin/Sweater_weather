@@ -12,7 +12,11 @@ class MapQuestService
 
     response = conn.get("/directions/v2/route?key=#{api_key}&from=#{encoded_from}&to=#{encoded_to}")
 
-    JSON.parse(response.body, symbolize_names: true)[:route]
-    # require 'pry'; binding.pry
+    data = JSON.parse(response.body, symbolize_names: true)
+    if response.success? && data[:info][:statuscode] == 0
+      data[:route]
+    else
+      raise "Routing is impossible: #{data[:info][:messages].join(', ')}"
+    end
   end
 end
