@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'webmock/rspec'
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
@@ -72,6 +73,10 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
+end
+
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
 end
 
 VCR.configure do |config|
