@@ -1,4 +1,6 @@
 class Api::V1::RoadTripController < ApplicationController
+  before_action :authenticate_api_key
+  
   def create
     # require 'pry'; binding.pry
     origin = params[:origin]
